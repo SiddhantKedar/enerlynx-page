@@ -14,22 +14,22 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg:        #f4f9f7;
-    --bg2:       #eaf4f0;
+    --bg:        #fafafa;   /* neutral light */
+    --bg2:       #f4f4f3;   /* neutral, slightly deeper */
     --surface:   #ffffff;
-    --border:    #d0e8df;
-    --blue:      #1a5f8a;
-    --blue-mid:  #2179a8;
-    --blue-lt:   #e8f4fb;
-    --teal:      #0d8a78;
-    --green:     #12a96a;
-    --green-lt:  #e4f7ef;
-    --sky:       #38bdf8;
-    --text:      #1a2e24;
-    --body:      #3d5a4e;
-    --muted:     #7a9e8e;
-    --card-sh:   0 2px 20px rgba(26,95,138,0.09);
-    --card-sh-h: 0 8px 36px rgba(26,95,138,0.16);
+    --border:    #e8e8e6;   /* neutral hairline */
+    --blue:      #e17100;   /* brand orange — primary accent (was blue) */
+    --blue-mid:  #c15f00;   /* darker orange for hovers */
+    --blue-lt:   #fbead9;   /* light orange wash */
+    --teal:      #497d00;   /* olive — secondary accent (was teal) */
+    --green:     #497d00;   /* olive — secondary accent (was green) */
+    --green-lt:  #eef3e4;   /* light olive wash */
+    --sky:       #497d00;   /* olive */
+    --text:      #151515;   /* near-black */
+    --body:      #3a3a3a;   /* neutral body gray */
+    --muted:     #767676;   /* neutral muted gray */
+    --card-sh:   0 2px 20px rgba(0,0,0,0.06);
+    --card-sh-h: 0 8px 36px rgba(0,0,0,0.12);
   }
 
   html { scroll-behavior: smooth; }
@@ -52,15 +52,15 @@
     background: rgba(255,255,255,0.88);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
-    box-shadow: 0 1px 12px rgba(26,95,138,0.07);
+    box-shadow: 0 1px 12px rgba(0,0,0,0.07);
   }
   .logo {
-    font-family: 'Inter', sans-serif;
-    font-weight: 800; font-size: 1.45rem;
-    color: var(--blue);
-    letter-spacing: 0.06em;
+    display: inline-flex; align-items: center; gap: .55rem;
+    text-decoration: none;
   }
-  .logo span { color: var(--green); }
+  .logo svg { display: block; }
+  .logo .logo-mark      { height: 30px; width: auto; }
+  .logo .logo-word-svg  { height: 18px; width: auto; }
   .nav-links { display: flex; gap: 2.2rem; list-style: none; }
   .nav-links a {
     color: var(--muted); font-size: 0.95rem; font-weight: 500;
@@ -74,34 +74,34 @@
     font-size: 0.92rem; font-weight: 600; text-decoration: none;
     letter-spacing: 0.03em;
     transition: background .22s, transform .18s, box-shadow .22s;
-    box-shadow: 0 2px 10px rgba(26,95,138,0.22);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.22);
   }
-  .nav-cta:hover { background: var(--blue-mid); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,95,138,0.28); }
+  .nav-cta:hover { background: var(--blue-mid); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.28); }
 
   /* ── HERO ── */
   .hero {
     position: relative; min-height: 100vh;
     display: flex; align-items: center;
     overflow: hidden;
-    background: linear-gradient(160deg, #e8f4fb 0%, #eaf7f1 55%, #f4f9f7 100%);
+    background: linear-gradient(160deg, #fbf6f0 0%, #f6f6f4 55%, #fafafa 100%);
   }
   .hero-blob {
     position: absolute; top: -10%; right: -8%;
     width: 680px; height: 680px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(18,169,106,0.12) 0%, rgba(26,95,138,0.08) 55%, transparent 75%);
+    background: radial-gradient(circle, rgba(225,113,0,0.09) 0%, rgba(73,125,0,0.05) 55%, transparent 75%);
     pointer-events: none;
   }
   .hero-blob2 {
     position: absolute; bottom: -15%; left: -5%;
     width: 480px; height: 480px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(26,95,138,0.09) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(225,113,0,0.06) 0%, transparent 70%);
     pointer-events: none;
   }
   .hero-grid-lines {
     position: absolute; inset: 0; pointer-events: none;
     background-image:
-      linear-gradient(rgba(26,95,138,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(26,95,138,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
     background-size: 48px 48px;
   }
   .hero-content {
@@ -115,14 +115,14 @@
   @keyframes fadeUp { from { opacity:0; transform:translateY(22px);} to {opacity:1; transform:none;} }
   .hero-badge {
     display: inline-flex; align-items: center; gap: .5rem;
-    background: var(--green-lt); border: 1px solid rgba(18,169,106,0.3);
+    background: var(--green-lt); border: 1px solid rgba(73,125,0,0.3);
     padding: .28rem .85rem; border-radius: 100px;
     font-size: .82rem; font-weight: 600; letter-spacing: .1em;
     color: var(--teal); text-transform: uppercase;
     margin-bottom: 1.4rem;
   }
   .hero-badge::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--green); animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(18,169,106,.5);} 50%{box-shadow:0 0 0 7px rgba(18,169,106,0);} }
+  @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(73,125,0,.5);} 50%{box-shadow:0 0 0 7px rgba(73,125,0,0);} }
   h1 {
     font-family: 'Inter', sans-serif;
     font-size: clamp(2.6rem, 5vw, 3.8rem);
@@ -144,10 +144,10 @@
     color: #fff;
     padding: .78rem 1.8rem; border-radius: 8px;
     font-size: 1rem; font-weight: 600; text-decoration: none;
-    box-shadow: 0 4px 16px rgba(26,95,138,0.28);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.28);
     transition: transform .2s, box-shadow .2s;
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,95,138,0.35); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
   .btn-outline {
     border: 1.5px solid var(--border); color: var(--blue);
     background: var(--surface);
@@ -166,7 +166,7 @@
   .hero-img-wrap {
     border-radius: 20px; overflow: hidden;
     aspect-ratio: 4/3;
-    box-shadow: 0 20px 60px rgba(26,95,138,0.18), 0 4px 16px rgba(26,95,138,0.1);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.1);
     border: 1px solid var(--border);
   }
   .hero-img-wrap img { width:100%; height:100%; object-fit:cover; }
@@ -190,7 +190,7 @@
     position: absolute; top: -1rem; right: -1rem;
     background: var(--blue);
     border-radius: 12px; padding: .75rem 1.1rem;
-    box-shadow: 0 8px 24px rgba(26,95,138,0.28);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.28);
     color: #fff; text-align: center;
   }
   .hero-chip2-val { font-family: 'Inter', sans-serif; font-size: 1.35rem; font-weight: 800; letter-spacing: -0.01em; }
@@ -204,7 +204,7 @@
     padding: 1.8rem 3rem;
     display: grid; grid-template-columns: repeat(4, 1fr);
     text-align: center; gap: 1rem;
-    box-shadow: 0 2px 12px rgba(26,95,138,0.05);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
   }
   .stat-item { padding: .5rem 0; }
   .stat-num {
@@ -249,7 +249,7 @@
   .about-img {
     position: relative; border-radius: 18px; overflow: hidden;
     aspect-ratio: 4/3;
-    box-shadow: 0 16px 52px rgba(26,95,138,0.14);
+    box-shadow: 0 16px 52px rgba(0,0,0,0.14);
     border: 1px solid var(--border);
   }
   .about-img img { width:100%; height:100%; object-fit:cover; }
@@ -258,7 +258,7 @@
     background: rgba(255,255,255,0.95);
     border-radius: 10px; padding: .65rem .9rem;
     display: flex; align-items: center; gap: .6rem;
-    box-shadow: 0 4px 16px rgba(26,95,138,.15);
+    box-shadow: 0 4px 16px rgba(0,0,0,.15);
     border: 1px solid var(--border);
   }
   .about-img-badge-dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 6px var(--green); }
@@ -269,8 +269,8 @@
     font-size:.82rem; font-weight:600; letter-spacing:.04em;
     border: 1px solid;
   }
-  .pill-blue  { background:var(--blue-lt);  border-color:rgba(26,95,138,.2);  color:var(--blue); }
-  .pill-green { background:var(--green-lt); border-color:rgba(18,169,106,.25); color:var(--teal); }
+  .pill-blue  { background:var(--blue-lt);  border-color:rgba(0,0,0,.2);  color:var(--blue); }
+  .pill-green { background:var(--green-lt); border-color:rgba(73,125,0,.25); color:var(--teal); }
 
   /* ── FEATURES ── */
   #features-wrap {
@@ -300,12 +300,12 @@
     opacity: 0; transition: opacity .28s;
     border-radius: 14px 14px 0 0;
   }
-  .feat-card:hover { transform: translateY(-4px); border-color: rgba(26,95,138,.25); box-shadow: var(--card-sh-h); }
+  .feat-card:hover { transform: translateY(-4px); border-color: rgba(0,0,0,.25); box-shadow: var(--card-sh-h); }
   .feat-card:hover::after { opacity: 1; }
   .feat-icon {
     width: 52px; height: 52px; border-radius: 12px;
     background: linear-gradient(135deg, var(--blue-lt), var(--green-lt));
-    border: 1px solid rgba(26,95,138,.15);
+    border: 1px solid rgba(0,0,0,.15);
     display: flex; align-items: center; justify-content: center;
     font-size: 1.5rem; margin-bottom: 1.2rem;
   }
@@ -338,11 +338,11 @@
     transition: box-shadow .2s, border-color .2s;
   }
   .arch-node:last-child { margin-bottom: 0; }
-  .arch-node:hover { border-color: rgba(26,95,138,.28); box-shadow: 0 4px 14px rgba(26,95,138,.1); }
+  .arch-node:hover { border-color: rgba(0,0,0,.28); box-shadow: 0 4px 14px rgba(0,0,0,.1); }
   .arch-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .arch-dot.green  { background: var(--green);    box-shadow: 0 0 7px rgba(18,169,106,.6); }
-  .arch-dot.teal   { background: var(--teal);     box-shadow: 0 0 7px rgba(13,138,120,.5); }
-  .arch-dot.sky    { background: var(--blue-mid); box-shadow: 0 0 7px rgba(33,121,168,.5); }
+  .arch-dot.green  { background: var(--green);    box-shadow: 0 0 7px rgba(73,125,0,.6); }
+  .arch-dot.teal   { background: var(--teal);     box-shadow: 0 0 7px rgba(73,125,0,.5); }
+  .arch-dot.sky    { background: var(--blue-mid); box-shadow: 0 0 7px rgba(225,113,0,.5); }
   .arch-dot.muted  { background: var(--muted); }
   .arch-node-label { font-size: 1rem; font-weight: 600; color: var(--text); }
   .arch-node-sub   { font-size: .87rem; color: var(--muted); margin-top: .14rem; }
@@ -371,7 +371,7 @@
   .app-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.72) saturate(1.05); }
   .app-card-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(10,37,64,0.88) 0%, rgba(10,37,64,0.05) 65%);
+    background: linear-gradient(to top, rgba(17,17,17,0.88) 0%, rgba(17,17,17,0.05) 65%);
     display: flex; flex-direction: column; justify-content: flex-end;
     padding: 1.6rem;
   }
@@ -385,7 +385,7 @@
 
   /* ── CTA ── */
   #cta {
-    background: linear-gradient(135deg, var(--blue) 0%, #136e58 100%);
+    background: linear-gradient(135deg, #1c1c1c 0%, #2b2b2b 100%);
     text-align: center; padding: 6rem 3rem;
     position: relative; overflow: hidden;
   }
@@ -422,8 +422,10 @@
     display: flex; justify-content: space-between; align-items: center;
     flex-wrap: wrap; gap: 1rem;
   }
-  .footer-logo { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--surface); letter-spacing: 0.06em; }
-  .footer-logo span { color: var(--green); }
+  .footer-logo { display: inline-flex; align-items: center; gap: .5rem; }
+  .footer-logo svg { display: block; }
+  .footer-logo .logo-mark     { height: 26px; width: auto; }
+  .footer-logo .logo-word-svg { height: 15px; width: auto; }
   .footer-links { display: flex; gap: 1.8rem; list-style: none; }
   .footer-links a { font-size: .95rem; color: rgba(255,255,255,.5); text-decoration: none; transition: color .2s; }
   .footer-links a:hover { color: var(--green); }
@@ -453,7 +455,27 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">ENER<span>LYNX</span></div>
+  <a href="#" class="logo" aria-label="Enerlynx">
+    <svg class="logo-mark" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="471.19 200.73 302.38 299.99">
+<path d="M671.004 409.729H530.381V381.755L555.704 353.48H728.904" stroke="#F26A1B" stroke-width="25.3668"/>
+<path d="M483.871 320.218V264.609L512.818 232.615H724.589" stroke="#F26A1B" stroke-width="25.3668"/>
+<path d="M664.41 305.744H537.956L483.871 362.115V447.433L509.009 470.286H728.398" stroke="#343434" stroke-width="25.3668"/>
+<circle cx="742.691" cy="231.61" r="22.6096" stroke="#F26A1B" stroke-width="16.5436"/>
+<circle cx="742.691" cy="352.929" r="22.6096" stroke="#F26A1B" stroke-width="16.5436"/>
+<circle cx="742.691" cy="469.837" r="22.6096" stroke="#343434" stroke-width="16.5436"/>
+</svg>
+    <svg class="logo-word-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1026.23 129.85">
+<path d="M892.691 129.85L941.86 63.2554L895.291 0H924.315L959.297 47.9517L996.661 0H1024.82L975.867 63.8119L1026.23 129.85H997.094L958.322 78.7447L920.958 129.85H892.691Z" fill="#343434"/>
+<path d="M752.451 129.85V0H775.628L852.197 94.3266V0H875.807V129.85H852.63L776.169 34.4102V129.85H752.451Z" fill="#343434"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M662.205 129.85V73.7362L608.704 0H636.429L674.876 53.7022L686.573 73.9217V129.85H662.205Z" fill="#343434"/>
+<path d="M740.074 0H713.107L680.822 45.3499L692.777 65.3499L740.074 0Z" fill="#F26A1B"/>
+<path d="M537.312 129.85V0H561.571V110.743H627.635V129.85H537.312Z" fill="#343434"/>
+<path d="M402.138 129.85V0H459.429C469.971 0 479.068 1.57675 486.721 4.73025C494.447 7.82191 500.403 12.243 504.591 17.9935C508.851 23.744 510.981 30.5766 510.981 38.4912C510.981 44.9219 509.356 50.6105 506.107 55.5572C502.93 60.5039 498.454 64.5848 492.678 67.8002C486.902 70.9537 480.223 73.0869 472.642 74.1999L518.345 129.85H488.996L447.083 77.4462H426.397V129.85H402.138ZM426.397 60.1947H455.422C465.241 60.1947 472.859 58.4015 478.274 54.8152C483.761 51.2289 486.505 46.0967 486.505 39.4187C486.505 32.5552 484.05 27.2066 479.14 23.373C474.303 19.5393 466.974 17.6225 457.155 17.6225H426.397V60.1947Z" fill="#343434"/>
+<path d="M278.175 129.85V0H376.188V18.3645H302.434V53.4239H366.116V70.7682H302.434V111.3H376.838V129.85H278.175Z" fill="#343434"/>
+<path d="M123.963 129.85V0H147.139L223.709 94.3266V0H247.318V129.85H224.142L147.681 34.4102V129.85H123.963Z" fill="#343434"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 53.4239V129.85H98.6628V111.3H24.2596V70.7682H87.9409V53.4239H24.2596H0ZM24.2596 18.3645H98.013V0H0V18.3645H24.2596Z" fill="#343434"/>
+</svg>
+  </a>
   <ul class="nav-links">
     <li><a href="#about-wrap">About</a></li>
     <li><a href="#features-wrap">Features</a></li>
@@ -688,13 +710,33 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">ENER<span>LYNX</span></div>
+  <div class="footer-logo" role="img" aria-label="Enerlynx">
+    <svg class="logo-mark" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="471.19 200.73 302.38 299.99">
+<path d="M671.004 409.729H530.381V381.755L555.704 353.48H728.904" stroke="#F26A1B" stroke-width="25.3668"/>
+<path d="M483.871 320.218V264.609L512.818 232.615H724.589" stroke="#F26A1B" stroke-width="25.3668"/>
+<path d="M664.41 305.744H537.956L483.871 362.115V447.433L509.009 470.286H728.398" stroke="white" stroke-width="25.3668"/>
+<circle cx="742.691" cy="231.61" r="22.6096" stroke="#F26A1B" stroke-width="16.5436"/>
+<circle cx="742.691" cy="352.929" r="22.6096" stroke="#F26A1B" stroke-width="16.5436"/>
+<circle cx="742.691" cy="469.837" r="22.6096" stroke="white" stroke-width="16.5436"/>
+</svg>
+    <svg class="logo-word-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1026.23 129.85">
+<path d="M892.691 129.85L941.86 63.2554L895.291 0H924.315L959.297 47.9517L996.661 0H1024.82L975.867 63.8119L1026.23 129.85H997.094L958.322 78.7447L920.958 129.85H892.691Z" fill="white"/>
+<path d="M752.451 129.85V0H775.628L852.197 94.3266V0H875.807V129.85H852.63L776.169 34.4102V129.85H752.451Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M662.205 129.85V73.7362L608.704 0H636.429L674.876 53.7022L686.573 73.9217V129.85H662.205Z" fill="white"/>
+<path d="M740.074 0H713.107L680.822 45.3499L692.777 65.3499L740.074 0Z" fill="#F26A1B"/>
+<path d="M537.312 129.85V0H561.571V110.743H627.635V129.85H537.312Z" fill="white"/>
+<path d="M402.138 129.85V0H459.429C469.971 0 479.068 1.57675 486.721 4.73025C494.447 7.82191 500.403 12.243 504.591 17.9935C508.851 23.744 510.981 30.5766 510.981 38.4912C510.981 44.9219 509.356 50.6105 506.107 55.5572C502.93 60.5039 498.454 64.5848 492.678 67.8002C486.902 70.9537 480.223 73.0869 472.642 74.1999L518.345 129.85H488.996L447.083 77.4462H426.397V129.85H402.138ZM426.397 60.1947H455.422C465.241 60.1947 472.859 58.4015 478.274 54.8152C483.761 51.2289 486.505 46.0967 486.505 39.4187C486.505 32.5552 484.05 27.2066 479.14 23.373C474.303 19.5393 466.974 17.6225 457.155 17.6225H426.397V60.1947Z" fill="white"/>
+<path d="M278.175 129.85V0H376.188V18.3645H302.434V53.4239H366.116V70.7682H302.434V111.3H376.838V129.85H278.175Z" fill="white"/>
+<path d="M123.963 129.85V0H147.139L223.709 94.3266V0H247.318V129.85H224.142L147.681 34.4102V129.85H123.963Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 53.4239V129.85H98.6628V111.3H24.2596V70.7682H87.9409V53.4239H24.2596H0ZM24.2596 18.3645H98.013V0H0V18.3645H24.2596Z" fill="white"/>
+</svg>
+  </div>
   <ul class="footer-links">
     <li><a href="mailto:info@enerlynx.in">info@enerlynx.in</a></li>
     <li><a href="mailto:support@enerlynx.in">support@enerlynx.in</a></li>
     <li><a href="https://www.enerlynx.in">enerlynx.in</a></li>
   </ul>
-  <div class="footer-copy">© 2025 Enerlynx Technologies. All rights reserved.</div>
+  <div class="footer-copy">© 2026 Enerlynx Pvt Ltd. All rights reserved.</div>
 </footer>
 
 <script>
