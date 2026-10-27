@@ -1,0 +1,138 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/schibsted-grotesk";
+@import "@fontsource-variable/jetbrains-mono";
+
+/* ──────────────────────────────────────────────────────────────
+   Enerlynx design tokens — light theme only (for now).
+   Names follow shadcn/ui conventions so `npx shadcn add <x>`
+   components pick up the brand automatically.
+   ────────────────────────────────────────────────────────────── */
+:root {
+  /* brand */
+  --brand-orange: #e17100;
+  --brand-orange-deep: #b95c00;
+  --brand-orange-wash: #fcefe1;
+  --brand-olive: #497d00;
+  --brand-olive-deep: #3a6400;
+  --brand-olive-wash: #eef3e2;
+  --brand-ink: #1b1a16; /* the dark stroke in the logo */
+
+  /* surfaces */
+  --background: #f5f5f3; /* page paper */
+  --foreground: #1b1a16;
+  --card: #ffffff;
+  --card-foreground: #1b1a16;
+  --popover: #ffffff;
+  --popover-foreground: #1b1a16;
+
+  /* roles */
+  --primary: var(--brand-orange);
+  --primary-foreground: #ffffff;
+  --secondary: #ecebe7;
+  --secondary-foreground: #1b1a16;
+  --muted: #ecebe7;
+  --muted-foreground: #6f6d65;
+  --accent: #efeeea;
+  --accent-foreground: #1b1a16;
+  --destructive: #c4321c;
+
+  --border: #e3e2dd;
+  --border-strong: #d2d1ca;
+  --input: #d8d7d1;
+  --ring: var(--brand-orange);
+
+  --body: #46443d; /* long-form text, a step softer than ink */
+
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --font-sans: "Schibsted Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-body: var(--body);
+
+  --color-orange: var(--brand-orange);
+  --color-orange-deep: var(--brand-orange-deep);
+  --color-orange-wash: var(--brand-orange-wash);
+  --color-olive: var(--brand-olive);
+  --color-olive-deep: var(--brand-olive-deep);
+  --color-olive-wash: var(--brand-olive-wash);
+  --color-ink: var(--brand-ink);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    /* anchor jumps land below the floating header */
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-body font-sans antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-foreground;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--brand-orange);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--brand-orange);
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
