@@ -1,0 +1,25 @@
+# AWS Amplify Hosting build settings for enerlynx.in
+# Next.js static export: `npm run build` writes a plain HTML/CSS/JS site to ./out,
+# which Amplify serves from its CDN. No server, no SSR.
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Next.js 16 needs Node 20.9 or newer
+        - nvm install 22
+        - nvm use 22
+        - node -v
+        - npm ci
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: out
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*
+
