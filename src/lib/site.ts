@@ -10,11 +10,8 @@ export const site = {
   portalUrl: "https://app.enerlynx.in",
   city: "Hyderabad, Telangana",
   /** Browser tab and Google result title. Keep under ~60 characters. */
-<<<<<<< HEAD
   title: "Enerlynx | Solar Scada | Power Plant Control | Forecasting",
-=======
-  title: "Enerlynx | Solar Scada - Power Plant Control - Forecasting",
->>>>>>> 4801f0e437cc97c68bf53d0bdc3ae96b171fd2d0
+
   /** Google result snippet. Keep between ~120 and 160 characters. */
   description:
     "1-minute solar plant monitoring on European-make edge hardware, with TGREDCO-approved PM-KUSUM SLDC integration. Built in Hyderabad for Indian solar plants.",
