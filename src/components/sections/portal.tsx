@@ -18,17 +18,16 @@ const rise: Variants = {
 };
 
 /**
- * Portal screens, in order. Drop a screenshot into /public/portal/ and set `src`
- * (e.g. "/portal/portfolio.webp"). Until then a placeholder shows the expected file.
- * Screenshots: 14:9, captured at 1400 × 900 with 2× scale (2800 × 1800).
+ * Portal screens, in order. Each one loads /public/portal/<id>.webp; until that file
+ * exists a placeholder shows the expected name. No code change needed to add one.
+ * Screenshots: 1880 × 904 WebP (about 2.08 : 1), cropped from the top-left of a full-width capture.
  */
-const screens: { id: string; title: string; caption: string; path: string; src?: string }[] = [
+const screens: { id: string; title: string; caption: string; path: string }[] = [
   {
     id: "portfolio",
     title: "Portfolio",
     caption: "Every site and every customer, in one login.",
     path: "/portfolio",
-    src: "/portal/portfolio.webp",
   },
   {
     id: "plant",
@@ -53,13 +52,15 @@ const screens: { id: string; title: string; caption: string; path: string; src?:
 const portalHost = site.portalUrl.replace(/^https?:\/\//, "");
 
 function Screen({ screen }: { screen: (typeof screens)[number] }) {
-  if (screen.src) {
+  const [missing, setMissing] = useState(false);
+  if (!missing) {
     return (
       // eslint-disable-next-line @next/next/no-img-element -- static export, images are pre-sized
       <img
-        src={screen.src}
+        src={`/portal/${screen.id}.webp`}
+        onError={() => setMissing(true)}
         alt={`Enerlynx portal, ${screen.title.toLowerCase()} screen`}
-        className="block size-full object-cover object-top"
+        className="block size-full object-contain object-top"
         loading="lazy"
         draggable={false}
       />
@@ -93,7 +94,16 @@ export function Portal() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <section id="portal" aria-labelledby="portal-title" className="py-24 sm:py-32">
+      <section id="portal" aria-labelledby="portal-title" className="relative isolate overflow-hidden border-b bg-card py-16 sm:py-24">
+        {/* backdrop: fine dots fading up from the bottom edge, and a warm glow behind the window */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-1/2 bg-[radial-gradient(var(--border-strong)_1px,transparent_1px)] [background-size:16px_16px] [mask-image:linear-gradient(to_top,#000,transparent)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[32rem] w-[60rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(225,113,0,.10),transparent)]"
+        />
         <Container>
           <motion.div
             initial="hidden"
@@ -119,10 +129,10 @@ export function Portal() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.8, ease }}
-            className="mx-auto mt-12 max-w-5xl"
+            className="mx-auto mt-10 w-full max-w-[min(60rem,calc((100svh-16rem)*2))]"
           >
             {/* screen picker */}
-            <div role="tablist" aria-label="Portal screens" className="mx-auto mb-6 flex w-fit max-w-full gap-1 overflow-x-auto rounded-full bg-muted p-1">
+            <div role="tablist" aria-label="Portal screens" className="mx-auto mb-5 flex w-fit max-w-full gap-1 overflow-x-auto rounded-full bg-muted p-1">
               {screens.map((s, i) => (
                 <button
                   key={s.id}
@@ -178,7 +188,7 @@ export function Portal() {
                 <CarouselContent className="ml-0">
                   {screens.map((s) => (
                     <CarouselItem key={s.id} className="pl-0" aria-label={s.title}>
-                      <div className="aspect-[14/9] bg-background">
+                      <div className="aspect-[1880/904] bg-background">
                         <Screen screen={s} />
                       </div>
                     </CarouselItem>

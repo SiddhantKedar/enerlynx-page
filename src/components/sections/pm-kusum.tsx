@@ -47,7 +47,7 @@ function Uplinks() {
 export function PmKusum() {
   return (
     <MotionConfig reducedMotion="user">
-      <section id="pm-kusum" aria-labelledby="kusum-title" className="relative overflow-hidden bg-ink py-24 sm:py-32">
+      <section id="pm-kusum" aria-labelledby="kusum-title" className="relative overflow-hidden bg-ink py-16 sm:py-24">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 bottom-0 h-96 bg-[radial-gradient(55%_100%_at_50%_100%,rgba(225,113,0,.14),transparent)]"
@@ -66,7 +66,7 @@ export function PmKusum() {
               className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[.04] px-3 py-1 text-sm font-medium text-white/80"
             >
               <ShieldCheck className="size-4 text-[#a9d35a]" aria-hidden />
-              TGREDCO approved
+              SLDC integration, live in production
             </motion.p>
             <motion.h2
               id="kusum-title"
@@ -76,7 +76,7 @@ export function PmKusum() {
               Ready for PM-KUSUM.
             </motion.h2>
             <motion.p variants={rise} className="mx-auto mt-5 max-w-[44ch] text-lg leading-relaxed text-white/65">
-              Metering at both ends of the line, reporting live to the Telangana SLDC.
+              Metering at both ends of the line, reporting live to your state’s SLDC.
             </motion.p>
           </motion.div>
 
@@ -92,13 +92,13 @@ export function PmKusum() {
               <span className="mx-auto grid size-14 place-items-center rounded-full border border-orange/40 bg-orange/10 text-orange">
                 <Landmark className="size-6" strokeWidth={1.6} aria-hidden />
               </span>
-              <p className="mt-4 text-lg font-semibold text-white">Telangana SLDC</p>
+              <p className="mt-4 text-lg font-semibold text-white">State SLDC</p>
               <p className="mt-1 flex items-center justify-center gap-2 text-sm text-white/55">
                 <span className="relative flex size-1.5">
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#8fbf3f] opacity-60" />
                   <span className="relative inline-flex size-1.5 rounded-full bg-[#8fbf3f]" />
                 </span>
-                Annexure-2 telemetry, live in production
+                Real-time telemetry, every minute
               </p>
             </motion.div>
 

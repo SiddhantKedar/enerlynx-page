@@ -52,8 +52,10 @@ const organizationJsonLd = {
   email: site.email.sales,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Hyderabad",
-    addressRegion: "Telangana",
+    streetAddress: site.address.street,
+    addressLocality: site.address.locality,
+    addressRegion: site.address.region,
+    postalCode: site.address.postalCode,
     addressCountry: "IN",
   },
   contactPoint: [

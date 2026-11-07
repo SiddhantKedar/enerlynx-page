@@ -1,151 +1,84 @@
 "use client";
 
 import { MotionConfig, motion, type Variants } from "motion/react";
+import { Check } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
+import { LiveConsole } from "@/components/sections/live-console";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-
-/** What the gateway reads from, and where the data goes. */
-const readsFrom = ["Inverters", "Energy meters", "Weather station", "Circuit breakers", "Annunciator"];
-const reportsTo = ["Enerlynx portal", "TGREDCO / MNRE SLDC"];
-
-/** Key facts from the company deck. */
-const facts = [
-  { value: "1 minute", label: "Data resolution, for every device on site" },
-  { value: "−40 to +75 °C", label: "Operating range of the European-make logger" },
-  { value: "Dual-SIM 4G", label: "Failover uplink with local buffering" },
-  { value: "Any brand", label: "Inverters and meters over Modbus RTU / TCP" },
-];
 
 const ease = [0.22, 0.61, 0.36, 1] as const;
 
 const rise: Variants = {
-  hidden: { opacity: 0, y: 14 },
+  hidden: { opacity: 0, y: 16 },
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease } },
 };
 
-const fade: Variants = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { duration: 0.5, ease } },
-};
-
-function DeviceList({ title, items, tone }: { title: string; items: string[]; tone: "olive" | "orange" }) {
-  return (
-    <div>
-      <p className="text-sm font-medium text-muted-foreground">{title}</p>
-      <motion.ul variants={{ show: { transition: { staggerChildren: 0.06 } } }} className="mt-3 space-y-2.5">
-        {items.map((item) => (
-          <motion.li key={item} variants={fade} className="flex items-center gap-3 font-medium text-foreground">
-            <span
-              aria-hidden
-              className={tone === "olive" ? "size-1.5 rounded-full bg-olive" : "size-1.5 rounded-full bg-orange"}
-            />
-            {item}
-          </motion.li>
-        ))}
-      </motion.ul>
-    </div>
-  );
-}
+const assurances = ["Any inverter brand", "No vendor lock-in", "Installed by our team"];
 
 export function Hero() {
   return (
     <MotionConfig reducedMotion="user">
-      <section id="hero" aria-labelledby="hero-title" className="relative pt-32 pb-20 sm:pt-44 sm:pb-28">
+      <section id="hero" aria-labelledby="hero-title" className="relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24">
+        {/* backdrop: dotted grid that fades out, and a warm glow behind the console */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(var(--border-strong)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_35%,#000_20%,transparent_75%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-24 right-[-10%] -z-10 size-[44rem] rounded-full bg-[radial-gradient(closest-side,rgba(225,113,0,.14),transparent)]"
+        />
+
         <Container>
-          <motion.div
-            initial="hidden"
-            animate="show"
-            variants={{ show: { transition: { staggerChildren: 0.09 } } }}
-            className="grid gap-14 lg:grid-cols-12 lg:gap-12"
-          >
-            {/* message */}
-            <div className="lg:col-span-8">
-              <motion.p
-                variants={rise}
-                className="inline-flex items-center gap-2 rounded-full border bg-card py-1 pr-3 pl-1.5 text-sm font-medium text-foreground"
-              >
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-olive-wash px-2 py-0.5 text-xs font-semibold text-olive-deep">
-                  <span className="relative flex size-1.5">
-                    <span className="absolute inline-flex size-full animate-ping rounded-full bg-olive opacity-60" />
-                    <span className="relative inline-flex size-1.5 rounded-full bg-olive" />
-                  </span>
-                  Live
-                </span>
-                TGREDCO-approved PM-KUSUM SLDC integration
-              </motion.p>
+          <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-10">
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={{ show: { transition: { staggerChildren: 0.09 } } }}
+              className="lg:col-span-6"
+            >
 
               <motion.h1
                 id="hero-title"
                 variants={rise}
-                className="mt-7 text-[clamp(2.5rem,6vw,4.6rem)] leading-[1.02] font-bold tracking-[-0.035em]"
+                className="text-[clamp(2.6rem,5.6vw,4.6rem)] leading-[1] font-bold tracking-[-0.04em]"
               >
                 Every minute of your solar plant, on record.
               </motion.h1>
 
-              <motion.p variants={rise} className="mt-6 max-w-[56ch] text-[clamp(1.05rem,1.4vw,1.2rem)] leading-relaxed">
-                Enerlynx reads every inverter, meter and sensor at your plant once a minute, keeps the data safe on site
-                when the network drops, and delivers it to your portal and the SLDC at the same time.
+              <motion.p variants={rise} className="mt-6 max-w-[48ch] text-[clamp(1.05rem,1.4vw,1.2rem)] leading-relaxed">
+                Monitoring and SLDC reporting for Indian solar plants, with a reading from every device, every minute.
               </motion.p>
 
               <motion.div variants={rise} className="mt-9 flex flex-wrap gap-3">
                 <Button asChild size="lg">
-                  <a href="#contact">Book a demo</a>
+                  <a href="#contact">Book a live demo</a>
                 </Button>
                 <Button asChild size="lg" variant="outline">
-                  <a href="#how-it-works">How it works</a>
+                  <a href="#how-it-works">See how it works</a>
                 </Button>
               </motion.div>
-            </div>
 
-            {/* what connects to what */}
-            <motion.aside
-              variants={rise}
-              aria-label="What Enerlynx connects"
-              className="self-end rounded-xl border bg-card p-6 lg:col-span-4"
+              <motion.ul variants={rise} className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem]">
+                {assurances.map((a) => (
+                  <li key={a} className="flex items-center gap-2 text-body">
+                    <Check className="size-4 text-olive" strokeWidth={2.5} aria-hidden />
+                    {a}
+                  </li>
+                ))}
+              </motion.ul>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30, rotate: -1.5 }}
+              animate={{ opacity: 1, y: 0, rotate: 0 }}
+              transition={{ delay: 0.3, duration: 0.9, ease }}
+              className="mx-auto w-full max-w-md lg:col-span-6 lg:mr-0 lg:max-w-[30rem]"
             >
-              <motion.div
-                variants={{ show: { transition: { staggerChildren: 0.25, delayChildren: 0.3 } } }}
-                className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1"
-              >
-                <DeviceList title="Reads from" items={readsFrom} tone="olive" />
-                <div className="hidden h-px bg-border lg:block" aria-hidden />
-                <DeviceList title="Reports to" items={reportsTo} tone="orange" />
-              </motion.div>
-            </motion.aside>
-          </motion.div>
-
-          {/* key facts */}
-          <motion.dl
-            initial="hidden"
-            animate="show"
-            variants={{ show: { transition: { staggerChildren: 0.08, delayChildren: 0.5 } } }}
-            className="mt-16 grid grid-cols-2 border-t lg:mt-20 lg:grid-cols-4"
-          >
-            {facts.map((f, i) => (
-              <motion.div
-                key={f.value}
-                variants={rise}
-                className={cn(
-                  "py-6 pr-4 lg:py-8",
-                  // two columns on phones/tablets: bottom rule under the first row, divider between columns
-                  i < 2 && "border-b lg:border-b-0",
-                  i % 2 === 1 && "border-l pl-4 sm:pl-6",
-                  // one row of four on desktop
-                  i > 0 && "lg:border-l lg:pl-6",
-                )}
-              >
-                <dt className="sr-only">{f.label}</dt>
-                <dd>
-                  <span className="block text-[clamp(1.25rem,2.2vw,1.6rem)] font-bold tracking-[-0.02em] text-foreground">
-                    {f.value}
-                  </span>
-                  <span className="mt-1.5 block text-[0.9375rem] leading-snug text-muted-foreground">{f.label}</span>
-                </dd>
-              </motion.div>
-            ))}
-          </motion.dl>
+              <LiveConsole />
+            </motion.div>
+          </div>
         </Container>
       </section>
     </MotionConfig>

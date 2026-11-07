@@ -25,10 +25,6 @@ export function SiteFooter() {
               Solar plant monitoring at 1-minute resolution, on European-make edge hardware,
               designed and commissioned in {site.city.split(",")[0]}.
             </p>
-            <p className="mt-6 inline-flex items-center gap-2 rounded-md border border-white/12 bg-white/[.04] px-3 py-2 text-sm text-white/80">
-              <ShieldCheck className="size-4 text-[#8fbf3f]" aria-hidden />
-              TGREDCO-approved PM-KUSUM SLDC integration
-            </p>
           </div>
 
           {/* link columns */}
@@ -61,7 +57,15 @@ export function SiteFooter() {
                 </li>
                 <li className="flex items-start gap-2 text-[0.9375rem]">
                   <MapPin className="mt-1 size-4 shrink-0 text-white/40" aria-hidden />
-                  {site.city}
+                    <address className="not-italic">
+                    {site.address.lines.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
+                  </address>
+                  
+                  
                 </li>
               </ul>
             </div>
