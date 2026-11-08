@@ -31,12 +31,12 @@ export const site = {
     support: "support@enerlynx.in",
   },
   address: {
-    lines: ["6th Floor, Trendz Techpark, Plot No 543", "Kakatiya Hills, Madhapur", "Hyderabad, Telangana 500081"],
-    full: "6th Floor, Trendz Techpark, Plot No 543, Kakatiya Hills, Madhapur, Hyderabad, Telangana 500081",
-    street: "6th Floor, Trendz Techpark, Plot No 543, Kakatiya Hills, Madhapur",
+    lines: ["H.No. 1-241/11/1, Plot No. 11, Road No. 11", "Bhavani Nagar, Kapra, ECIL", "Hyderabad, Telangana 500062"],
+    full: "H.No. 1-241/11/1, Plot No. 11, Road No. 11, Bhavani Nagar, Kapra, ECIL, Hyderabad, Telangana 500062",
+    street: "H.No. 1-241/11/1, Plot No. 11, Road No. 11, Bhavani Nagar, Kapra, ECIL",
     locality: "Hyderabad",
     region: "Telangana",
-    postalCode: "500081",
+    postalCode: "500062",
   },
 } as const;
 
